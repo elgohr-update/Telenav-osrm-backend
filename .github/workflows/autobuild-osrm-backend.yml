@@ -45,7 +45,7 @@ jobs:
     - name: Environment Printer
       uses: managedkaos/print-env@v1.0
     - name: Build & Publish to DockerHub
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: elgohr/Publish-Docker-Github-Action@v5
       with:
         name: ${{ env.DOCKERHUB_REGISTRY }}/${{ env.OSRM_BACKEND_IMAGE_NAME }}
         username: ${{ secrets.TELENAVMAP_DOCKERHUB_USERNAME }}
@@ -83,7 +83,7 @@ jobs:
         run: |
           cd ${{ env.OSRM_BACKEND_WITHIN_MAPDATA_DOCKERFILE_PATH }} && mkdir -p ${{ env.COMPILED_DATA_PATH }} && docker run --mount "src=$(pwd)/${{ env.COMPILED_DATA_PATH }},dst=/compiled-data,type=bind" "${{ env.DOCKERHUB_REGISTRY }}/${{ env.OSRM_BACKEND_IMAGE_NAME }}:${{ env.BUILT_OSRM_BACKEND_IMAGE_TAG }}" compile_mapdata "${{ env.SAMPLE_PROFILE }}" "${{ env.SAMPLE_OSM_MAPDATA }}" 
       - name: Build & Publish osrm-backend-within-mapdata to DockerHub
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v5
         with:
           name: ${{ env.DOCKERHUB_REGISTRY }}/${{ env.OSRM_BACKEND_WITHIN_MAPDATA_IMAGE_NAME }}
           username: ${{ secrets.TELENAVMAP_DOCKERHUB_USERNAME }}
